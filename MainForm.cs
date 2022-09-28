@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ChromiumWindow.Interfaces;
 using ChromiumWindow.Properties;
 using Microsoft.Web.WebView2.Core;
 
@@ -12,89 +14,52 @@ namespace ChromiumWindow
     public partial class MainForm : Form
     {
         private readonly string[] _arguments;
+        private ObservableCollection<IBrowserTab> _tabs = new();
+        
         public MainForm(string[] args)
         {
             InitializeComponent();
             _arguments = args;
         }
 
-        private async void MainForm_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             //Parse arguments
             ParseArguments();
-            
-            //Ensure Web View is ready before we do to much with it.
-            webView.CoreWebView2InitializationCompleted += WebViewOnCoreWebView2InitializationCompleted;
-            await InitializeWebView();
-        }
 
-        private void WebViewOnCoreWebView2InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
-        {
-            if (e.IsSuccess)
-                Console.WriteLine("WebView_CoreWebView2 Initialization Complete");
-        }
-
-        private async Task InitializeWebView()
-        {
-            Console.WriteLine("InitializeWebView");
-            await webView.EnsureCoreWebView2Async(null);
-            Console.WriteLine("WebView2 Runtime Version: " + webView.CoreWebView2.Environment.BrowserVersionString);
-            
-            if (webView?.CoreWebView2 == null)
+            DefaultTabCtl initialTab = new DefaultTabCtl("DuckDuckGo", "https://duckduckgo.com")
             {
-                Console.WriteLine("Not Ready...");
-            }
-            else
+                Dock = DockStyle.Fill
+            };
+            
+            _tabs.Add(initialTab);
+            //Add all browser tabs in _tabs to the TabControl
+            foreach (IBrowserTab tab in _tabs)
             {
-                webView.CoreWebView2.FaviconChanged += CoreWebView2OnFaviconChanged;
-                webView.CoreWebView2.SourceChanged += CoreWebView2OnSourceChanged;
-                UpdateUrlView();
+                TabPage tp = new TabPage(tab.TabName);
+                tp.Tag = tab; //add the IBrowserTab as an object tag for the TabPage control.
+                tp.Controls.Add((DefaultTabCtl)tab); //add the DefaultTabCtl control as a child of this tab page.
+                browserTabs.TabPages.Add(tp); //Finally, add the TabPage to the browser tabs.
             }
+            //
+            // tab1.Controls.Add(initialTab);
+            // browserTabs.TabPages[0].Controls.Add(initialTab);
+            // //browserTabs.Invalidate();
         }
-
-        private void CoreWebView2OnSourceChanged(object sender, CoreWebView2SourceChangedEventArgs e)
-        {
-            UpdateUrlView();
-        }
-
+        
         private void ParseArguments()
         {
             var argumentsParsed = ParseArguments(_arguments);
             if (argumentsParsed == null)
             {
                 Text = Resources.DefaultTitle;
-                webView.Source = new Uri("https://duckduckgo.com");
+                //webView.Source = new Uri("https://duckduckgo.com");
             }
 
             if (argumentsParsed?.Item1 != null)
                 Text = argumentsParsed.Value.Item1;
-            if (argumentsParsed?.Item2 != null)
-                webView.Source = new Uri(argumentsParsed.Value.Item2);
-        }
-        
-        private void CoreWebView2OnFaviconChanged(object sender, object e)
-        {
-            UpdateIcon();
-        }
-
-        private void UpdateUrlView()
-        {
-            webView?.CoreWebView2?.Navigate(webView.Source.AbsoluteUri);
-            UpdateIcon();
-        }
-
-        private void UpdateIcon()
-        {
-            if (!(webView?.CoreWebView2?.FaviconUri.Length > 0)) return;
-            
-            using (var client = new WebClient())
-            {
-                var content = client.DownloadData(webView.CoreWebView2.FaviconUri);
-                using (var stream = new MemoryStream(content))
-                {
-                    Icon = new Icon(stream);
-                }
-            }
+            //if (argumentsParsed?.Item2 != null)
+                //webView.Source = new Uri(argumentsParsed.Value.Item2);
         }
 
         private (string, string)? ParseArguments(string[] args)

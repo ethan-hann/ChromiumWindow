@@ -31,38 +31,134 @@ namespace ChromiumWindow
         /// </summary>
         private void InitializeComponent()
         {
-            this.webView = new Microsoft.Web.WebView2.WinForms.WebView2();
-            ((System.ComponentModel.ISupportInitialize)(this.webView)).BeginInit();
+            this.components = new System.ComponentModel.Container();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.newTabsBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadTabsBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.recentTabsDropDown = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.browserTabs = new System.Windows.Forms.TabControl();
+            this.faviconList = new System.Windows.Forms.ImageList(this.components);
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // webView
+            // menuStrip1
             // 
-            this.webView.AllowExternalDrop = true;
-            this.webView.CreationProperties = null;
-            this.webView.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.webView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webView.Location = new System.Drawing.Point(0, 0);
-            this.webView.Name = "webView";
-            this.webView.Size = new System.Drawing.Size(800, 450);
-            this.webView.Source = new System.Uri("https://localhost", System.UriKind.Absolute);
-            this.webView.TabIndex = 0;
-            this.webView.ZoomFactor = 1D;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.fileMenu, this.helpMenu });
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1231, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileMenu
+            // 
+            this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.newTabsBtn, this.loadTabsBtn, this.recentTabsDropDown, this.toolStripSeparator1, this.exitBtn });
+            this.fileMenu.Name = "fileMenu";
+            this.fileMenu.Size = new System.Drawing.Size(38, 20);
+            this.fileMenu.Text = "File";
+            // 
+            // newTabsBtn
+            // 
+            this.newTabsBtn.Name = "newTabsBtn";
+            this.newTabsBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.newTabsBtn.Size = new System.Drawing.Size(249, 22);
+            this.newTabsBtn.Text = "New Tab Configuration...";
+            // 
+            // loadTabsBtn
+            // 
+            this.loadTabsBtn.Name = "loadTabsBtn";
+            this.loadTabsBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.loadTabsBtn.Size = new System.Drawing.Size(249, 22);
+            this.loadTabsBtn.Text = "Load Tabs...";
+            // 
+            // recentTabsDropDown
+            // 
+            this.recentTabsDropDown.Name = "recentTabsDropDown";
+            this.recentTabsDropDown.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.recentTabsDropDown.Size = new System.Drawing.Size(249, 22);
+            this.recentTabsDropDown.Text = "Recent Tabs...";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(246, 6);
+            // 
+            // exitBtn
+            // 
+            this.exitBtn.Name = "exitBtn";
+            this.exitBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.exitBtn.Size = new System.Drawing.Size(249, 22);
+            this.exitBtn.Text = "Exit";
+            // 
+            // helpMenu
+            // 
+            this.helpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.aboutBtn });
+            this.helpMenu.Name = "helpMenu";
+            this.helpMenu.Size = new System.Drawing.Size(45, 20);
+            this.helpMenu.Text = "Help";
+            // 
+            // aboutBtn
+            // 
+            this.aboutBtn.Name = "aboutBtn";
+            this.aboutBtn.Size = new System.Drawing.Size(109, 22);
+            this.aboutBtn.Text = "About";
+            // 
+            // browserTabs
+            // 
+            this.browserTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browserTabs.ImageList = this.faviconList;
+            this.browserTabs.Location = new System.Drawing.Point(0, 24);
+            this.browserTabs.Name = "browserTabs";
+            this.browserTabs.SelectedIndex = 0;
+            this.browserTabs.Size = new System.Drawing.Size(1231, 689);
+            this.browserTabs.TabIndex = 1;
+            // 
+            // faviconList
+            // 
+            this.faviconList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.faviconList.ImageSize = new System.Drawing.Size(16, 16);
+            this.faviconList.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.webView);
+            this.ClientSize = new System.Drawing.Size(1231, 713);
+            this.Controls.Add(this.browserTabs);
+            this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Web View";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.webView)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
-        private Microsoft.Web.WebView2.WinForms.WebView2 webView;
+        private System.Windows.Forms.ImageList faviconList;
+
+        private System.Windows.Forms.TabControl browserTabs;
+
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem exitBtn;
+        private System.Windows.Forms.ToolStripMenuItem helpMenu;
+        private System.Windows.Forms.ToolStripMenuItem aboutBtn;
+
+        private System.Windows.Forms.ToolStripMenuItem recentTabsDropDown;
+
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileMenu;
+        private System.Windows.Forms.ToolStripMenuItem newTabsBtn;
+        private System.Windows.Forms.ToolStripMenuItem loadTabsBtn;
 
         #endregion
     }
