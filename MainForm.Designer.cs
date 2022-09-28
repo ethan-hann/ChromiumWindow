@@ -31,7 +31,6 @@ namespace ChromiumWindow
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.newTabsBtn = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,7 +41,6 @@ namespace ChromiumWindow
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.browserTabs = new System.Windows.Forms.TabControl();
-            this.faviconList = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,24 +104,17 @@ namespace ChromiumWindow
             // aboutBtn
             // 
             this.aboutBtn.Name = "aboutBtn";
-            this.aboutBtn.Size = new System.Drawing.Size(109, 22);
+            this.aboutBtn.Size = new System.Drawing.Size(152, 22);
             this.aboutBtn.Text = "About";
             // 
             // browserTabs
             // 
             this.browserTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.browserTabs.ImageList = this.faviconList;
             this.browserTabs.Location = new System.Drawing.Point(0, 24);
             this.browserTabs.Name = "browserTabs";
             this.browserTabs.SelectedIndex = 0;
             this.browserTabs.Size = new System.Drawing.Size(1231, 689);
             this.browserTabs.TabIndex = 1;
-            // 
-            // faviconList
-            // 
-            this.faviconList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.faviconList.ImageSize = new System.Drawing.Size(16, 16);
-            this.faviconList.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // MainForm
             // 
@@ -143,8 +134,6 @@ namespace ChromiumWindow
             this.ResumeLayout(false);
             this.PerformLayout();
         }
-
-        private System.Windows.Forms.ImageList faviconList;
 
         private System.Windows.Forms.TabControl browserTabs;
 

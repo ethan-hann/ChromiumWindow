@@ -5,15 +5,20 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChromiumWindow.Interfaces;
+using ChromiumWindow.Utility;
 using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.WinForms;
 
 namespace ChromiumWindow
 {
     public partial class DefaultTabCtl : UserControl, IBrowserTab
     {
+        public EventHandler IconUpdated;
+        
         public string TabName { get; set; }
         public Icon TabIcon { get; set; }
         public Uri TabUri { get; set; }
+        public WebView2 WebControl { get; set; }
         
         public DefaultTabCtl(string tabName, string initialUri)
         {
@@ -21,6 +26,8 @@ namespace ChromiumWindow
             TabName = tabName;
             
             InitializeComponent();
+
+            WebControl = tabWebView;
         }
         
         private async void DefaultTabCtl_Load(object sender, EventArgs e)
@@ -73,9 +80,22 @@ namespace ChromiumWindow
                 var content = client.DownloadData(tabWebView.CoreWebView2.FaviconUri);
                 using (var stream = new MemoryStream(content))
                 {
+                    stream.Seek(0, SeekOrigin.Begin);
                     TabIcon = new Icon(stream);
                 }
             }
+            
+            if (MainForm.getFaviconList().Images.ContainsKey(TabName))
+            {
+                MainForm.getFaviconList().Images.RemoveByKey(TabName);
+                MainForm.getFaviconList().Images.Add(TabName, TabIcon);
+            }
+            else
+            {
+                MainForm.getFaviconList().Images.Add(TabName, TabIcon);
+            }
+            
+            IconUpdated?.Invoke(this, new CEventArgs.IconUpdatedEventArgs(TabIcon, TabName));
         }
     }
 }
