@@ -34,6 +34,9 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="EasyTabs, Version=2.0.0.39, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>packages\EasyTabs.2.0.0\lib\net40\EasyTabs.dll</HintPath>
+        </Reference>
         <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.1369.0, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
           <HintPath>packages\Microsoft.Web.WebView2.1.0.1369-prerelease\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
         </Reference>
@@ -43,11 +46,21 @@
         <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.1369.0, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
           <HintPath>packages\Microsoft.Web.WebView2.1.0.1369-prerelease\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
         </Reference>
+        <Reference Include="Microsoft.WindowsAPICodePack, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>packages\EasyTabs.2.0.0\lib\net40\Microsoft.WindowsAPICodePack.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>packages\EasyTabs.2.0.0\lib\net40\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+        </Reference>
         <Reference Include="PagedControl, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
           <HintPath>packages\PagedControl.2.2.0\lib\net35\PagedControl.dll</HintPath>
         </Reference>
+        <Reference Include="Svg, Version=2.4.3.29446, Culture=neutral, PublicKeyToken=12a0bac221edeae2, processorArchitecture=MSIL">
+          <HintPath>packages\Svg.2.4.3\lib\Svg.dll</HintPath>
+        </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
+        <Reference Include="System.Web" />
         <Reference Include="System.Xml.Linq" />
         <Reference Include="System.Data.DataSetExtensions" />
         <Reference Include="Microsoft.CSharp" />
@@ -60,6 +73,21 @@
         <Reference Include="TabStrip, Version=2.0.8273.17724, Culture=neutral, processorArchitecture=MSIL">
           <HintPath>packages\WinTabControls.1.5.0\lib\TabStrip.dll</HintPath>
         </Reference>
+        <Reference Include="Win32Interop.Dwmapi, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>packages\Win32Interop.Dwmapi.1.0.1\lib\Win32Interop.Dwmapi.dll</HintPath>
+        </Reference>
+        <Reference Include="Win32Interop.Gdi32, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>packages\Win32Interop.Gdi32.1.0.1\lib\Win32Interop.Gdi32.dll</HintPath>
+        </Reference>
+        <Reference Include="Win32Interop.Kernel32, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>packages\Win32Interop.Kernel32.1.0.1\lib\Win32Interop.Kernel32.dll</HintPath>
+        </Reference>
+        <Reference Include="Win32Interop.User32, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>packages\Win32Interop.User32.1.0.1\lib\Win32Interop.User32.dll</HintPath>
+        </Reference>
+        <Reference Include="Win32Interop.Uxtheme, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>packages\Win32Interop.Uxtheme.1.0.1\lib\Win32Interop.Uxtheme.dll</HintPath>
+        </Reference>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="DefaultTabCtl.cs">
@@ -67,6 +95,12 @@
         </Compile>
         <Compile Include="DefaultTabCtl.Designer.cs">
           <DependentUpon>DefaultTabCtl.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Forms\BrowserTab.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="Forms\BrowserTab.Designer.cs">
+          <DependentUpon>BrowserTab.cs</DependentUpon>
         </Compile>
         <Compile Include="Interfaces\IBrowserTab.cs" />
         <Compile Include="MainForm.cs">
@@ -81,6 +115,9 @@
         <Compile Include="Utility\LogLevel.cs" />
         <EmbeddedResource Include="DefaultTabCtl.resx">
           <DependentUpon>DefaultTabCtl.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Forms\BrowserTab.resx">
+          <DependentUpon>BrowserTab.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="MainForm.resx">
           <DependentUpon>MainForm.cs</DependentUpon>
