@@ -31,35 +31,37 @@ namespace ChromiumWindow
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabWebView = new Microsoft.Web.WebView2.WinForms.WebView2();
-            ((System.ComponentModel.ISupportInitialize)(this.tabWebView)).BeginInit();
+            this.webView = new Microsoft.Web.WebView2.WinForms.WebView2();
+            ((System.ComponentModel.ISupportInitialize)(this.webView)).BeginInit();
             this.SuspendLayout();
             // 
-            // tabWebView
+            // webView
             // 
-            this.tabWebView.AllowExternalDrop = true;
-            this.tabWebView.CreationProperties = null;
-            this.tabWebView.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.tabWebView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabWebView.Location = new System.Drawing.Point(0, 0);
-            this.tabWebView.Name = "tabWebView";
-            this.tabWebView.Size = new System.Drawing.Size(719, 477);
-            this.tabWebView.TabIndex = 0;
-            this.tabWebView.ZoomFactor = 1D;
+            this.webView.AllowExternalDrop = true;
+            this.webView.CreationProperties = null;
+            this.webView.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.webView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webView.Location = new System.Drawing.Point(0, 0);
+            this.webView.Name = "webView";
+            this.webView.Size = new System.Drawing.Size(719, 477);
+            this.webView.TabIndex = 0;
+            this.webView.ZoomFactor = 1D;
+            this.webView.CoreWebView2InitializationCompleted += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2InitializationCompletedEventArgs>(this.webView_CoreWebView2InitializationCompleted);
+            this.webView.SourceChanged += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2SourceChangedEventArgs>(this.CoreWebView2OnSourceChanged);
             // 
             // DefaultTabCtl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tabWebView);
+            this.Controls.Add(this.webView);
             this.Name = "DefaultTabCtl";
             this.Size = new System.Drawing.Size(719, 477);
             this.Load += new System.EventHandler(this.DefaultTabCtl_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.tabWebView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.webView)).EndInit();
             this.ResumeLayout(false);
         }
 
-        private Microsoft.Web.WebView2.WinForms.WebView2 tabWebView;
+        private Microsoft.Web.WebView2.WinForms.WebView2 webView;
 
         #endregion
     }

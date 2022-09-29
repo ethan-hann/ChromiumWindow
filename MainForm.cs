@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using ChromiumWindow.Interfaces;
 using ChromiumWindow.Properties;
 using ChromiumWindow.Utility;
+using FarsiLibrary.Win;
+using Manina.Windows.Forms;
 using Microsoft.Web.WebView2.Core;
 
 namespace ChromiumWindow
@@ -16,22 +18,20 @@ namespace ChromiumWindow
     public partial class MainForm : Form
     {
         private readonly string[] _arguments;
-        private ObservableCollection<IBrowserTab> _tabs = new();
-        private Dictionary<string, Icon> TabIcons = new();
-        private static ImageList _faviconList = new();
-        
+        private readonly ObservableCollection<IBrowserTab> _tabs = new();
+
         public MainForm(string[] args)
         {
             InitializeComponent();
             _arguments = args;
-            
-            browserTabs.ImageList = _faviconList; //assign the image list to the tab control
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             //Parse arguments
             ParseArguments();
+            
+            //Create our tabs
             CreateTabs();
         }
 
@@ -58,23 +58,51 @@ namespace ChromiumWindow
             //Add all browser tabs in _tabs to the TabControl
             foreach (IBrowserTab tab in _tabs)
             {
-                TabPage tp = new TabPage(tab.TabName);
-                tp.Tag = tab; //add the IBrowserTab as an object tag for the TabPage control.
-                tp.Controls.Add((DefaultTabCtl)tab); //add the DefaultTabCtl control as a child of this tab page.
-                tp.ImageKey = tab.TabName;
-                ((DefaultTabCtl)tab).IconUpdated += UpdateTabIcon; //add eventhandler for tab icon
-                browserTabs.TabPages.Add(tp); //Finally, add the TabPage to the browser tabs.
-                browserTabs.Update();
+                ((DefaultTabCtl)tab).IconUpdated += UpdateTabIcon;
+                ((DefaultTabCtl)tab).TitleChanged += UpdateTitle;
+                ((DefaultTabCtl)tab).UriChanged += UpdateURI;
+
+                var tp = new FATabStripItem(tab.TabName, (DefaultTabCtl)tab);
+                ((DefaultTabCtl)tab).TabControlItem = tp;
+                browserTabStrip.AddTab(tp);
+
+
+                //TabPage tp = new TabPage(tab.TabName);
+                //tp.Tag = tab; //add the IBrowserTab as an object tag for the TabPage control.
+                //tp.Controls.Add((DefaultTabCtl)tab); //add the DefaultTabCtl control as a child of this tab page.
+                //tp.ImageKey = tab.TabName;
+                //((DefaultTabCtl)tab).IconUpdated += UpdateTabIcon; //add eventhandler for tab icon
+
+                //browserTabs.TabPages.Add(tp); //Finally, add the TabPage to the browser tabs.
+                // browserTabs.Update();
             }
         }
-        
+
+        private void UpdateURI(object sender, EventArgs args)
+        {
+            // if (args is not CEventArgs.PageUpdatedEventArgs e) return;
+            //
+            // var currentTab =
+            //     browserTabStrip.Items[browserTabStrip.Items.IndexOf(((DefaultTabCtl)e.Tab).TabControlItem)];
+            // currentTab.Title = ((DefaultTabCtl)e.Tab).TabName;
+        }
+
+        private void UpdateTitle(object sender, EventArgs args)
+        {
+            if (args is not CEventArgs.PageUpdatedEventArgs e) return;
+            
+            var currentTab =
+                browserTabStrip.Items[browserTabStrip.Items.IndexOf(((DefaultTabCtl)e.Tab).TabControlItem)];
+            currentTab.Title = ((DefaultTabCtl)e.Tab).TabName;
+        }
+
         private void UpdateTabIcon(object sender, EventArgs args)
         {
-            if (args is CEventArgs.IconUpdatedEventArgs e)
-            {
-                browserTabs.SelectedTab.Text = e.TabName;
-                browserTabs.SelectedTab.ImageKey = e.TabName;
-            }
+            // if (args is CEventArgs.IconUpdatedEventArgs e)
+            // {
+            //     browserTabs.SelectedTab.Text = e.TabName;
+            //     browserTabs.SelectedTab.ImageKey = e.TabName;
+            // }
         }
         
         private void ParseArguments()
@@ -136,10 +164,13 @@ namespace ChromiumWindow
 
             return null;
         }
-        
-        public static ImageList getFaviconList()
+
+        private void newTabButton_Click(object sender, EventArgs e)
         {
-            return _faviconList;
+            DefaultTabCtl tab = new DefaultTabCtl("New Tab", "about:blank") { Dock = DockStyle.Fill };
+            _tabs.Add(tab);
+            FATabStripItem tp = new FATabStripItem(tab.TabName, tab);
+            browserTabStrip.AddTab(tp);
         }
     }
 }

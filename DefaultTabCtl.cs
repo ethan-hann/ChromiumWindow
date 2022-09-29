@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net;
@@ -6,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChromiumWindow.Interfaces;
 using ChromiumWindow.Utility;
+using FarsiLibrary.Win;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.WinForms;
 
@@ -13,89 +16,108 @@ namespace ChromiumWindow
 {
     public partial class DefaultTabCtl : UserControl, IBrowserTab
     {
-        public EventHandler IconUpdated;
+        public EventHandler? UriChanged;
+        public EventHandler? TitleChanged;
+        public EventHandler? IconUpdated;
         
         public string TabName { get; set; }
-        public Icon TabIcon { get; set; }
-        public Uri TabUri { get; set; }
-        public WebView2 WebControl { get; set; }
-        
+        public Image? TabImage { get; set; }
+        public Uri? TabUri { get; set; }
+        public WebView2? WebControl { get; set; }
+        public FATabStripItem? TabControlItem { get; set; }
+
         public DefaultTabCtl(string tabName, string initialUri)
         {
             TabUri = new Uri(initialUri);
             TabName = tabName;
-            
             InitializeComponent();
-
-            WebControl = tabWebView;
+            
+            WebControl = webView;
         }
         
         private async void DefaultTabCtl_Load(object sender, EventArgs e)
         {
-            tabWebView.Source = TabUri;
+            webView.Source = TabUri;
+            
             //Ensure Web View is ready before we do to much with it.
             await InitializeWebView();
         }
 
         private async Task InitializeWebView()
         {
-            Console.WriteLine("InitializeWebView");
-            await tabWebView.EnsureCoreWebView2Async(null);
-            Console.WriteLine("WebView2 Runtime Version: " + tabWebView.CoreWebView2.Environment.BrowserVersionString);
+            Debugger.Log((int)LogLevel.Info, Debugger.DefaultCategory, "InitializeWebView");
+            await webView.EnsureCoreWebView2Async(null);
+            if (webView?.CoreWebView2 == null)
+            {
+                Debugger.Log((int)LogLevel.Warning, Debugger.DefaultCategory, "WebView2 Not Ready...");
+            }
+        }
+        
+        private void webView_CoreWebView2InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
+        {
+            if (!e.IsSuccess) return;
             
-            if (tabWebView?.CoreWebView2 == null)
-            {
-                Console.WriteLine("Not Ready...");
-            }
-            else
-            {
-                tabWebView.CoreWebView2.FaviconChanged += CoreWebView2OnFaviconChanged;
-                tabWebView.CoreWebView2.SourceChanged += CoreWebView2OnSourceChanged;
-                UpdateUrlView();
-            }
+            Debugger.Log((int)LogLevel.Info, Debugger.DefaultCategory, 
+                $"WebView2 Runtime Version: {webView.CoreWebView2.Environment.BrowserVersionString}");
+            
+            webView.CoreWebView2.FaviconChanged += CoreWebView2OnFaviconChanged;
+            webView.CoreWebView2.SourceChanged += CoreWebView2OnSourceChanged;
+            webView.CoreWebView2.DocumentTitleChanged += DocumentTitleChanged;
+            webView.CoreWebView2.Navigate(webView.Source.AbsoluteUri);
+        }
+
+        private void DocumentTitleChanged(object sender, object e)
+        {
+            TabName = webView.CoreWebView2.DocumentTitle;
+            TitleChanged?.Invoke(this, new CEventArgs.PageUpdatedEventArgs(this));
         }
 
         private void CoreWebView2OnSourceChanged(object sender, CoreWebView2SourceChangedEventArgs e)
         {
-            UpdateUrlView();
+            if (webView == null) return;
+            TabUri = new Uri(webView.Source.AbsoluteUri);
+            UriChanged?.Invoke(this, new CEventArgs.PageUpdatedEventArgs(this));
+            
+            // webView?.CoreWebView2?.Navigate(webView.Source.AbsoluteUri);
+            // TabName = webView?.CoreWebView2?.DocumentTitle;
+            //
+            // if (TabControlItem != null)
+            //     TabControlItem.Title = TabName;
         }
         
         private void CoreWebView2OnFaviconChanged(object sender, object e)
         {
-            UpdateIcon();
-        }
+            if (!(webView?.CoreWebView2?.FaviconUri.Length > 0))
+            {
+                Debugger.Log((int)LogLevel.Error, Debugger.DefaultCategory, 
+                    $"Could not find favicon for: {webView?.Source}");
+                return;
+            }
 
-        private void UpdateUrlView()
-        {
-            tabWebView?.CoreWebView2?.Navigate(tabWebView.Source.AbsoluteUri);
-            UpdateIcon();
-        }
+            try
+            {
+                using var client = new WebClient();
+                var content = client.DownloadData(webView.CoreWebView2.FaviconUri);
+                //var stream = await webView.CoreWebView2.GetFaviconAsync(CoreWebView2FaviconImageFormat.Png);
+                using var stream = new MemoryStream(content);
+                stream.Seek(0, SeekOrigin.Begin);
+                TabImage = new Bitmap(stream);
+                // if (stream != null)
+                // {
+                //     
+                // }
+            
+                if (TabImage == null || TabControlItem == null) return;
 
-        private void UpdateIcon()
-        {
-            if (!(tabWebView?.CoreWebView2?.FaviconUri.Length > 0)) return;
-            
-            using (var client = new WebClient())
+                TabControlItem.Image = TabImage;
+                IconUpdated?.Invoke(this, new CEventArgs.PageUpdatedEventArgs(this));
+            }
+            catch (Exception exception)
             {
-                var content = client.DownloadData(tabWebView.CoreWebView2.FaviconUri);
-                using (var stream = new MemoryStream(content))
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                    TabIcon = new Icon(stream);
-                }
+                Console.WriteLine(exception);
+                throw;
             }
             
-            if (MainForm.getFaviconList().Images.ContainsKey(TabName))
-            {
-                MainForm.getFaviconList().Images.RemoveByKey(TabName);
-                MainForm.getFaviconList().Images.Add(TabName, TabIcon);
-            }
-            else
-            {
-                MainForm.getFaviconList().Images.Add(TabName, TabIcon);
-            }
-            
-            IconUpdated?.Invoke(this, new CEventArgs.IconUpdatedEventArgs(TabIcon, TabName));
         }
     }
 }
