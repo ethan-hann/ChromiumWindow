@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using EasyTabs;
 using Microsoft.Web.WebView2.Core;
 
 namespace ChromiumWindow
@@ -21,15 +20,7 @@ namespace ChromiumWindow
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            MainForm container = new MainForm(args);
-
-            container.AddNewTab();
-            container.SelectedTabIndex = 0;
-
-            TitleBarTabsApplicationContext applicationContext = new TitleBarTabsApplicationContext();
-            applicationContext.Start(container);
-
-            Application.Run(applicationContext);
+            Application.Run(new MainForm(args));
         }
     }
 }
