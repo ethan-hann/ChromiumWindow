@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Krypton.Toolkit">
+      <HintPath>Z:\Drive\UI Libraries\Krypton-Updated\Krypton.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.1369.0, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Web.WebView2.1.0.1369-prerelease\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
     </Reference>
@@ -51,6 +54,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -140,6 +144,57 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="icons\angle-left.png" />
+    <None Include="icons\angle-right.png" />
+    <None Include="icons\copy-alt.png" />
+    <None Include="icons\cross.png" />
+    <None Include="icons\disk.png" />
+    <None Include="icons\exit.png" />
+    <None Include="icons\eye.png" />
+    <None Include="icons\lock.png" />
+    <None Include="icons\maximize.png" />
+    <None Include="icons\menu-burger.png" />
+    <None Include="icons\minimize-arrows.png" />
+    <None Include="icons\paste.png" />
+    <None Include="icons\plus.png" />
+    <None Include="icons\print.png" />
+    <None Include="icons\rotate-right.png" />
+    <None Include="icons\scissors.png" />
+    <None Include="icons\search.png" />
+    <None Include="icons\angle-left-32x-32x.png" />
+    <None Include="icons\angle-right-32x-32x.png" />
+    <None Include="icons\copy-alt-32x-32x.png" />
+    <None Include="icons\cross-32x-32x.png" />
+    <None Include="icons\disk-32x-32x.png" />
+    <None Include="icons\exit-32x-32x.png" />
+    <None Include="icons\eye-32x-32x.png" />
+    <None Include="icons\lock-32x-32x.png" />
+    <None Include="icons\maximize-32x-32x.png" />
+    <None Include="icons\menu-burger-32x-32x.png" />
+    <None Include="icons\minimize-arrows-32x-32x.png" />
+    <None Include="icons\paste-32x-32x.png" />
+    <None Include="icons\plus-32x-32x.png" />
+    <None Include="icons\print-32x-32x.png" />
+    <None Include="icons\rotate-right-32x-32x.png" />
+    <None Include="icons\scissors-32x-32x.png" />
+    <None Include="icons\search-32x-32x.png" />
+    <None Include="icons\angle-left-16x-16x.png" />
+    <None Include="icons\angle-right-16x-16x.png" />
+    <None Include="icons\copy-alt-16x-16x.png" />
+    <None Include="icons\cross-16x-16x.png" />
+    <None Include="icons\disk-16x-16x.png" />
+    <None Include="icons\exit-16x-16x.png" />
+    <None Include="icons\eye-16x-16x.png" />
+    <None Include="icons\lock-16x-16x.png" />
+    <None Include="icons\maximize-16x-16x.png" />
+    <None Include="icons\menu-burger-16x-16x.png" />
+    <None Include="icons\minimize-arrows-16x-16x.png" />
+    <None Include="icons\paste-16x-16x.png" />
+    <None Include="icons\plus-16x-16x.png" />
+    <None Include="icons\print-16x-16x.png" />
+    <None Include="icons\rotate-right-16x-16x.png" />
+    <None Include="icons\scissors-16x-16x.png" />
+    <None Include="icons\search-16x-16x.png" />
     <Content Include="readme.md" />
     <None Include="Resources\abnc_logo.png" />
     <None Include="Resources\default_icon.png" />

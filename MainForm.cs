@@ -10,6 +10,7 @@ using ChromiumWindow.Interfaces;
 using ChromiumWindow.Properties;
 using ChromiumWindow.Utility;
 using FarsiLibrary.Win;
+using Krypton.Toolkit;
 using Manina.Windows.Forms;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.WinForms;
@@ -17,7 +18,7 @@ using static ChromiumWindow.Utility.CEventArgs;
 
 namespace ChromiumWindow
 {
-    public partial class MainForm : Form
+    public partial class MainForm : KryptonForm
     {
         private readonly string[] _arguments;
         private readonly ObservableCollection<IBrowserTab> _tabs = new();
@@ -45,6 +46,8 @@ namespace ChromiumWindow
             //
             // //Create our tabs
             CreateTabs();
+            if (tabsListView.Items.Count > 0)
+                tabsListView.FocusedItem = tabsListView.Items[0];
         }
 
         private void CreateTabs()
@@ -182,10 +185,10 @@ namespace ChromiumWindow
             if (!_tabs.Contains(tabSelected))
                 _tabs.Add(tabSelected);
 
-            splitContainer1.Panel2.Controls.Clear();
-            splitContainer1.Panel2.Controls.Add(_tabs[_tabs.IndexOf(tabSelected)] as DefaultTabCtl);
+            splitContainer.Panel2.Controls.Clear();
+            splitContainer.Panel2.Controls.Add(_tabs[_tabs.IndexOf(tabSelected)] as DefaultTabCtl);
 
-            splitContainer1.Panel2.Update();
+            splitContainer.Panel2.Update();
         }
     }
 }

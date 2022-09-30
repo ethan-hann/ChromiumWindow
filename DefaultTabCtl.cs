@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChromiumWindow.Interfaces;
 using ChromiumWindow.Utility;
-using FarsiLibrary.Win;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.WinForms;
 
@@ -24,7 +23,6 @@ namespace ChromiumWindow
         public Image? TabImage { get; set; }
         public Uri? TabUri { get; set; }
         public WebView2? WebControl { get; set; }
-        public FATabStripItem? TabControlItem { get; set; }
 
         public DefaultTabCtl(string tabName, string initialUri)
         {
@@ -107,9 +105,11 @@ namespace ChromiumWindow
                 //     
                 // }
             
-                if (TabImage == null || TabControlItem == null) return;
+                if (TabImage == null) return;
 
-                TabControlItem.Image = TabImage;
+                if (!GlobalVars.MainApplication.GetFavicons().Images.ContainsKey(TabName))
+                    GlobalVars.MainApplication.GetFavicons().Images.Add(TabName, TabImage);
+
                 IconUpdated?.Invoke(this, new CEventArgs.PageUpdatedEventArgs(this));
             }
             catch (Exception exception)
