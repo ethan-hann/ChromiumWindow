@@ -18,6 +18,7 @@ namespace ChromiumWindow
         public EventHandler? UriChanged;
         public EventHandler? TitleChanged;
         public EventHandler? IconUpdated;
+        public EventHandler? OnNavigationCompleted;
         
         public string TabName { get; set; }
         public Image? TabImage { get; set; }
@@ -61,7 +62,14 @@ namespace ChromiumWindow
             webView.CoreWebView2.FaviconChanged += CoreWebView2OnFaviconChanged;
             webView.CoreWebView2.SourceChanged += CoreWebView2OnSourceChanged;
             webView.CoreWebView2.DocumentTitleChanged += DocumentTitleChanged;
+            webView.CoreWebView2.NavigationCompleted += NavigationCompleted;
+
             webView.CoreWebView2.Navigate(webView.Source.AbsoluteUri);
+        }
+
+        private void NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
+        {
+            OnNavigationCompleted?.Invoke(this, new CEventArgs.NavigationCompletedEventArgs(e, this));
         }
 
         private void DocumentTitleChanged(object sender, object e)
@@ -75,12 +83,6 @@ namespace ChromiumWindow
             if (webView == null) return;
             TabUri = new Uri(webView.Source.AbsoluteUri);
             UriChanged?.Invoke(this, new CEventArgs.PageUpdatedEventArgs(this));
-            
-            // webView?.CoreWebView2?.Navigate(webView.Source.AbsoluteUri);
-            // TabName = webView?.CoreWebView2?.DocumentTitle;
-            //
-            // if (TabControlItem != null)
-            //     TabControlItem.Title = TabName;
         }
         
         private void CoreWebView2OnFaviconChanged(object sender, object e)
@@ -96,15 +98,11 @@ namespace ChromiumWindow
             {
                 using var client = new WebClient();
                 var content = client.DownloadData(webView.CoreWebView2.FaviconUri);
-                //var stream = await webView.CoreWebView2.GetFaviconAsync(CoreWebView2FaviconImageFormat.Png);
+                
                 using var stream = new MemoryStream(content);
                 stream.Seek(0, SeekOrigin.Begin);
                 TabImage = new Bitmap(stream);
-                // if (stream != null)
-                // {
-                //     
-                // }
-            
+
                 if (TabImage == null) return;
 
                 if (!GlobalVars.MainApplication.GetFavicons().Images.ContainsKey(TabName))

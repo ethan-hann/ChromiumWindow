@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using ChromiumWindow.Interfaces;
+using Microsoft.Web.WebView2.Core;
 
 namespace ChromiumWindow.Utility
 {
@@ -14,6 +15,19 @@ namespace ChromiumWindow.Utility
 
             public PageUpdatedEventArgs(IBrowserTab tab)
             {
+                Tab = tab;
+            }
+        }
+
+        public class NavigationCompletedEventArgs : EventArgs
+        {
+            public CoreWebView2NavigationCompletedEventArgs CoreWebView2NavigationCompletedEventArgs { get; private set; }
+            public IBrowserTab Tab { get; private set; }
+
+            public NavigationCompletedEventArgs(CoreWebView2NavigationCompletedEventArgs coreWebView2NavigationCompletedEventArgs, 
+                IBrowserTab tab)
+            {
+                CoreWebView2NavigationCompletedEventArgs = coreWebView2NavigationCompletedEventArgs;
                 Tab = tab;
             }
         }

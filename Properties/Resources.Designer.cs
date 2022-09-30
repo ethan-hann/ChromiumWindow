@@ -61,6 +61,39 @@ namespace ChromiumWindow.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;404 Error Page&lt;/title&gt;
+        ///    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        ///    &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+        ///    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///    &lt;div class=&quot;wrapper&quot;&gt;
+        ///        &lt;h2&gt;Oops! Page not found.&lt;/h2&gt;
+        ///        &lt;div&gt;
+        ///            &lt;img src=&quot;images/404.svg&quot; alt=&quot;404&quot;&gt;
+        ///        &lt;/div&gt;
+        ///        &lt;h4&gt;We can&apos;t find  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _404_html {
+            get {
+                return ResourceManager.GetString("404.html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] _404_svg {
+            get {
+                object obj = ResourceManager.GetObject("404.svg", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap _lock {
@@ -595,6 +628,46 @@ namespace ChromiumWindow.Properties {
             get {
                 object obj = ResourceManager.GetObject("search_32x_32x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to * {
+        ///    margin: 0;
+        ///    padding: 0;
+        ///    box-sizing: border-box;
+        ///}
+        ///
+        ///body {
+        ///    font-family: &apos;Poppins&apos;, sans-serif;
+        ///    background-color: #88efc8;
+        ///    min-height: 100vh;
+        ///    display: flex;
+        ///    align-items: center;
+        ///    justify-content: center;
+        ///}
+        ///
+        ///.wrapper {
+        ///    text-align: center;
+        ///}
+        ///
+        ///    .wrapper h2 {
+        ///        margin: 40px 0;
+        ///        font-size: 2.5rem;
+        ///    }
+        ///
+        ///    .wrapper img {
+        ///        width: 600px;
+        ///        max-width: 75%;
+        ///    }
+        ///
+        ///    .wrapper h4 {
+        ///        margin: 40px 0 20px;
+        ///      [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string styles_css {
+            get {
+                return ResourceManager.GetString("styles.css", resourceCulture);
             }
         }
     }

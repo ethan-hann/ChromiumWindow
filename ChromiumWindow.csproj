@@ -198,6 +198,9 @@
     <Content Include="readme.md" />
     <None Include="Resources\abnc_logo.png" />
     <None Include="Resources\default_icon.png" />
+    <Content Include="Resources\404.html" />
+    <Content Include="Resources\images\404.svg" />
+    <Content Include="Resources\styles.css" />
     <Content Include="TabStrip.jpg" />
   </ItemGroup>
   <ItemGroup>

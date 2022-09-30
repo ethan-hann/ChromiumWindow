@@ -33,39 +33,45 @@ namespace ChromiumWindow
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.newTabButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.newTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveTabsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadTabsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newTabBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveTabsBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadTabsBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lockViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lockViewBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.minimizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.maximizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sideBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addressBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minimizeBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.maximizeBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.chkShowSideBar = new System.Windows.Forms.ToolStripMenuItem();
+            this.chkShowAddressBar = new System.Windows.Forms.ToolStripMenuItem();
+            this.chkShowMenuBar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.findToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.printBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.cutBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.userGuideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userGuideBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.tabsListView = new System.Windows.Forms.ListView();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.splitContainer = new Krypton.Toolkit.KryptonSplitContainer();
+            this.navigationPanel = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.backButton = new Krypton.Toolkit.KryptonButton();
             this.forwardButton = new Krypton.Toolkit.KryptonButton();
-            this.addressBar = new Krypton.Toolkit.KryptonTextBox();
+            this.addressBar = new System.Windows.Forms.Panel();
+            this.addressTxtBox = new Krypton.Toolkit.KryptonTextBox();
             this.refreshBtn = new Krypton.Toolkit.ButtonSpecAny();
+            this.splitContainer = new Krypton.Toolkit.KryptonSplitContainer();
             this.menuStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.navigationPanel.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.addressBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer.Panel1)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -79,9 +85,7 @@ namespace ChromiumWindow
             this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newTabButton});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 4);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 1);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(38, 24);
@@ -91,47 +95,47 @@ namespace ChromiumWindow
             // newTabButton
             // 
             this.newTabButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newTabToolStripMenuItem,
-            this.saveTabsToolStripMenuItem,
-            this.loadTabsToolStripMenuItem,
+            this.newTabBtn,
+            this.saveTabsBtn,
+            this.loadTabsBtn,
             this.toolStripSeparator2,
             this.viewToolStripMenuItem,
             this.toolStripSeparator4,
-            this.findToolStripMenuItem,
-            this.printToolStripMenuItem,
+            this.findBtn,
+            this.printBtn,
             this.editToolStripMenuItem,
             this.toolStripSeparator3,
             this.helpToolStripMenuItem,
-            this.exitToolStripMenuItem});
+            this.exitBtn});
             this.newTabButton.Image = global::ChromiumWindow.Properties.Resources.menu_burger_16x_16x;
             this.newTabButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.newTabButton.Name = "newTabButton";
             this.newTabButton.Size = new System.Drawing.Size(28, 20);
             // 
-            // newTabToolStripMenuItem
+            // newTabBtn
             // 
-            this.newTabToolStripMenuItem.Image = global::ChromiumWindow.Properties.Resources.plus_16x_16x;
-            this.newTabToolStripMenuItem.Name = "newTabToolStripMenuItem";
-            this.newTabToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.newTabToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.newTabToolStripMenuItem.Text = "New Tab";
+            this.newTabBtn.Image = global::ChromiumWindow.Properties.Resources.plus_16x_16x;
+            this.newTabBtn.Name = "newTabBtn";
+            this.newTabBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
+            this.newTabBtn.Size = new System.Drawing.Size(207, 22);
+            this.newTabBtn.Text = "New Tab";
             // 
-            // saveTabsToolStripMenuItem
+            // saveTabsBtn
             // 
-            this.saveTabsToolStripMenuItem.Image = global::ChromiumWindow.Properties.Resources.disk_16x_16x;
-            this.saveTabsToolStripMenuItem.Name = "saveTabsToolStripMenuItem";
-            this.saveTabsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            this.saveTabsBtn.Image = global::ChromiumWindow.Properties.Resources.disk_16x_16x;
+            this.saveTabsBtn.Name = "saveTabsBtn";
+            this.saveTabsBtn.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
-            this.saveTabsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.saveTabsToolStripMenuItem.Text = "Save Tabs...";
+            this.saveTabsBtn.Size = new System.Drawing.Size(207, 22);
+            this.saveTabsBtn.Text = "Save Tabs...";
             // 
-            // loadTabsToolStripMenuItem
+            // loadTabsBtn
             // 
-            this.loadTabsToolStripMenuItem.Name = "loadTabsToolStripMenuItem";
-            this.loadTabsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            this.loadTabsBtn.Name = "loadTabsBtn";
+            this.loadTabsBtn.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.L)));
-            this.loadTabsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.loadTabsToolStripMenuItem.Text = "Load Tabs...";
+            this.loadTabsBtn.Size = new System.Drawing.Size(207, 22);
+            this.loadTabsBtn.Text = "Load Tabs...";
             // 
             // toolStripSeparator2
             // 
@@ -141,134 +145,134 @@ namespace ChromiumWindow
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lockViewToolStripMenuItem,
+            this.lockViewBtn,
             this.toolStripSeparator5,
-            this.minimizeToolStripMenuItem,
-            this.maximizeToolStripMenuItem,
-            this.sideBarToolStripMenuItem,
-            this.addressBarToolStripMenuItem,
-            this.menuBarToolStripMenuItem});
+            this.minimizeBtn,
+            this.maximizeBtn,
+            this.chkShowSideBar,
+            this.chkShowAddressBar,
+            this.chkShowMenuBar});
             this.viewToolStripMenuItem.Image = global::ChromiumWindow.Properties.Resources.eye_16x_16x;
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.V)));
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.viewToolStripMenuItem.Text = "View";
             // 
-            // lockViewToolStripMenuItem
+            // lockViewBtn
             // 
-            this.lockViewToolStripMenuItem.CheckOnClick = true;
-            this.lockViewToolStripMenuItem.Image = global::ChromiumWindow.Properties.Resources.lock_16x_16x;
-            this.lockViewToolStripMenuItem.Name = "lockViewToolStripMenuItem";
-            this.lockViewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            this.lockViewBtn.CheckOnClick = true;
+            this.lockViewBtn.Image = global::ChromiumWindow.Properties.Resources.lock_16x_16x;
+            this.lockViewBtn.Name = "lockViewBtn";
+            this.lockViewBtn.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.K)));
-            this.lockViewToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.lockViewToolStripMenuItem.Text = "&Lock View";
+            this.lockViewBtn.Size = new System.Drawing.Size(200, 22);
+            this.lockViewBtn.Text = "&Lock View";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(197, 6);
             // 
-            // minimizeToolStripMenuItem
+            // minimizeBtn
             // 
-            this.minimizeToolStripMenuItem.Image = global::ChromiumWindow.Properties.Resources.minimize_arrows_16x_16x;
-            this.minimizeToolStripMenuItem.Name = "minimizeToolStripMenuItem";
-            this.minimizeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Down)));
-            this.minimizeToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.minimizeToolStripMenuItem.Text = "&Minimize";
+            this.minimizeBtn.Image = global::ChromiumWindow.Properties.Resources.minimize_arrows_16x_16x;
+            this.minimizeBtn.Name = "minimizeBtn";
+            this.minimizeBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Down)));
+            this.minimizeBtn.Size = new System.Drawing.Size(200, 22);
+            this.minimizeBtn.Text = "&Minimize";
             // 
-            // maximizeToolStripMenuItem
+            // maximizeBtn
             // 
-            this.maximizeToolStripMenuItem.Image = global::ChromiumWindow.Properties.Resources.maximize_16x_16x;
-            this.maximizeToolStripMenuItem.Name = "maximizeToolStripMenuItem";
-            this.maximizeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Up)));
-            this.maximizeToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.maximizeToolStripMenuItem.Text = "Ma&ximize";
+            this.maximizeBtn.Image = global::ChromiumWindow.Properties.Resources.maximize_16x_16x;
+            this.maximizeBtn.Name = "maximizeBtn";
+            this.maximizeBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Up)));
+            this.maximizeBtn.Size = new System.Drawing.Size(200, 22);
+            this.maximizeBtn.Text = "Ma&ximize";
             // 
-            // sideBarToolStripMenuItem
+            // chkShowSideBar
             // 
-            this.sideBarToolStripMenuItem.Checked = true;
-            this.sideBarToolStripMenuItem.CheckOnClick = true;
-            this.sideBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.sideBarToolStripMenuItem.Name = "sideBarToolStripMenuItem";
-            this.sideBarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Tab)));
-            this.sideBarToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.sideBarToolStripMenuItem.Text = "&Side Bar";
+            this.chkShowSideBar.Checked = true;
+            this.chkShowSideBar.CheckOnClick = true;
+            this.chkShowSideBar.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowSideBar.Name = "chkShowSideBar";
+            this.chkShowSideBar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Tab)));
+            this.chkShowSideBar.Size = new System.Drawing.Size(200, 22);
+            this.chkShowSideBar.Text = "&Side Bar";
             // 
-            // addressBarToolStripMenuItem
+            // chkShowAddressBar
             // 
-            this.addressBarToolStripMenuItem.Checked = true;
-            this.addressBarToolStripMenuItem.CheckOnClick = true;
-            this.addressBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.addressBarToolStripMenuItem.Name = "addressBarToolStripMenuItem";
-            this.addressBarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.A)));
-            this.addressBarToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.addressBarToolStripMenuItem.Text = "&Address Bar";
+            this.chkShowAddressBar.Checked = true;
+            this.chkShowAddressBar.CheckOnClick = true;
+            this.chkShowAddressBar.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowAddressBar.Name = "chkShowAddressBar";
+            this.chkShowAddressBar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.A)));
+            this.chkShowAddressBar.Size = new System.Drawing.Size(200, 22);
+            this.chkShowAddressBar.Text = "&Address Bar";
             // 
-            // menuBarToolStripMenuItem
+            // chkShowMenuBar
             // 
-            this.menuBarToolStripMenuItem.Checked = true;
-            this.menuBarToolStripMenuItem.CheckOnClick = true;
-            this.menuBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.menuBarToolStripMenuItem.Name = "menuBarToolStripMenuItem";
-            this.menuBarToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.menuBarToolStripMenuItem.Text = "Men&u Bar";
+            this.chkShowMenuBar.Checked = true;
+            this.chkShowMenuBar.CheckOnClick = true;
+            this.chkShowMenuBar.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowMenuBar.Name = "chkShowMenuBar";
+            this.chkShowMenuBar.Size = new System.Drawing.Size(200, 22);
+            this.chkShowMenuBar.Text = "Men&u Bar";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(204, 6);
             // 
-            // findToolStripMenuItem
+            // findBtn
             // 
-            this.findToolStripMenuItem.Image = global::ChromiumWindow.Properties.Resources.search_16x_16x;
-            this.findToolStripMenuItem.Name = "findToolStripMenuItem";
-            this.findToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.findToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.findToolStripMenuItem.Text = "Find...";
+            this.findBtn.Image = global::ChromiumWindow.Properties.Resources.search_16x_16x;
+            this.findBtn.Name = "findBtn";
+            this.findBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.findBtn.Size = new System.Drawing.Size(207, 22);
+            this.findBtn.Text = "Find...";
             // 
-            // printToolStripMenuItem
+            // printBtn
             // 
-            this.printToolStripMenuItem.Image = global::ChromiumWindow.Properties.Resources.print_16x_16x;
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.printToolStripMenuItem.Text = "Print...";
+            this.printBtn.Image = global::ChromiumWindow.Properties.Resources.print_16x_16x;
+            this.printBtn.Name = "printBtn";
+            this.printBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.printBtn.Size = new System.Drawing.Size(207, 22);
+            this.printBtn.Text = "Print...";
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyToolStripMenuItem,
-            this.cutToolStripMenuItem,
-            this.pasteToolStripMenuItem});
+            this.copyBtn,
+            this.cutBtn,
+            this.pasteBtn});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.E)));
             this.editToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.editToolStripMenuItem.Text = "Edit";
             // 
-            // copyToolStripMenuItem
+            // copyBtn
             // 
-            this.copyToolStripMenuItem.Image = global::ChromiumWindow.Properties.Resources.copy_alt_16x_16x;
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyBtn.Image = global::ChromiumWindow.Properties.Resources.copy_alt_16x_16x;
+            this.copyBtn.Name = "copyBtn";
+            this.copyBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.copyBtn.Size = new System.Drawing.Size(144, 22);
+            this.copyBtn.Text = "Copy";
             // 
-            // cutToolStripMenuItem
+            // cutBtn
             // 
-            this.cutToolStripMenuItem.Image = global::ChromiumWindow.Properties.Resources.scissors_16x_16x;
-            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.cutToolStripMenuItem.Text = "Cut";
+            this.cutBtn.Image = global::ChromiumWindow.Properties.Resources.scissors_16x_16x;
+            this.cutBtn.Name = "cutBtn";
+            this.cutBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.cutBtn.Size = new System.Drawing.Size(144, 22);
+            this.cutBtn.Text = "Cut";
             // 
-            // pasteToolStripMenuItem
+            // pasteBtn
             // 
-            this.pasteToolStripMenuItem.Image = global::ChromiumWindow.Properties.Resources.paste_16x_16x;
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteBtn.Image = global::ChromiumWindow.Properties.Resources.paste_16x_16x;
+            this.pasteBtn.Name = "pasteBtn";
+            this.pasteBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.pasteBtn.Size = new System.Drawing.Size(144, 22);
+            this.pasteBtn.Text = "Paste";
             // 
             // toolStripSeparator3
             // 
@@ -278,35 +282,36 @@ namespace ChromiumWindow
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userGuideToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.userGuideBtn,
+            this.aboutBtn});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.H)));
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // userGuideToolStripMenuItem
+            // userGuideBtn
             // 
-            this.userGuideToolStripMenuItem.Name = "userGuideToolStripMenuItem";
-            this.userGuideToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.userGuideToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.userGuideToolStripMenuItem.Text = "User Guide";
+            this.userGuideBtn.Name = "userGuideBtn";
+            this.userGuideBtn.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.userGuideBtn.Size = new System.Drawing.Size(150, 22);
+            this.userGuideBtn.Text = "User Guide";
             // 
-            // aboutToolStripMenuItem
+            // aboutBtn
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutBtn.Name = "aboutBtn";
+            this.aboutBtn.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.aboutBtn.Size = new System.Drawing.Size(150, 22);
+            this.aboutBtn.Text = "About";
             // 
-            // exitToolStripMenuItem
+            // exitBtn
             // 
-            this.exitToolStripMenuItem.Image = global::ChromiumWindow.Properties.Resources.exit_16x_16x;
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitBtn.Image = global::ChromiumWindow.Properties.Resources.exit_16x_16x;
+            this.exitBtn.Name = "exitBtn";
+            this.exitBtn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.exitBtn.Size = new System.Drawing.Size(207, 22);
+            this.exitBtn.Text = "Exit";
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
             // tabsListView
             // 
@@ -318,7 +323,7 @@ namespace ChromiumWindow
             this.tabsListView.Location = new System.Drawing.Point(0, 0);
             this.tabsListView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabsListView.Name = "tabsListView";
-            this.tabsListView.Size = new System.Drawing.Size(263, 735);
+            this.tabsListView.Size = new System.Drawing.Size(263, 726);
             this.tabsListView.TabIndex = 0;
             this.tabsListView.UseCompatibleStateImageBehavior = false;
             this.tabsListView.View = System.Windows.Forms.View.List;
@@ -326,36 +331,40 @@ namespace ChromiumWindow
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.menuStrip1);
-            this.flowLayoutPanel1.Controls.Add(this.backButton);
-            this.flowLayoutPanel1.Controls.Add(this.forwardButton);
+            this.flowLayoutPanel1.Controls.Add(this.navigationPanel);
             this.flowLayoutPanel1.Controls.Add(this.addressBar);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1436, 33);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1436, 42);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
-            // splitContainer
+            // navigationPanel
             // 
-            this.splitContainer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer.Location = new System.Drawing.Point(0, 33);
-            this.splitContainer.Name = "splitContainer";
+            this.navigationPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.navigationPanel.Controls.Add(this.flowLayoutPanel2);
+            this.navigationPanel.Location = new System.Drawing.Point(3, 6);
+            this.navigationPanel.Name = "navigationPanel";
+            this.navigationPanel.Size = new System.Drawing.Size(100, 28);
+            this.navigationPanel.TabIndex = 0;
             // 
-            // splitContainer.Panel1
+            // flowLayoutPanel2
             // 
-            this.splitContainer.Panel1.Controls.Add(this.tabsListView);
-            this.splitContainer.Size = new System.Drawing.Size(1436, 735);
-            this.splitContainer.SplitterDistance = 263;
-            this.splitContainer.TabIndex = 0;
+            this.flowLayoutPanel2.Controls.Add(this.menuStrip1);
+            this.flowLayoutPanel2.Controls.Add(this.backButton);
+            this.flowLayoutPanel2.Controls.Add(this.forwardButton);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(100, 28);
+            this.flowLayoutPanel2.TabIndex = 0;
             // 
             // backButton
             // 
             this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.backButton.ButtonStyle = Krypton.Toolkit.ButtonStyle.ButtonSpec;
-            this.backButton.Location = new System.Drawing.Point(41, 6);
+            this.backButton.Location = new System.Drawing.Point(41, 3);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(20, 20);
             this.backButton.TabIndex = 2;
@@ -366,7 +375,7 @@ namespace ChromiumWindow
             // 
             this.forwardButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.forwardButton.ButtonStyle = Krypton.Toolkit.ButtonStyle.ButtonSpec;
-            this.forwardButton.Location = new System.Drawing.Point(67, 6);
+            this.forwardButton.Location = new System.Drawing.Point(67, 3);
             this.forwardButton.Name = "forwardButton";
             this.forwardButton.Size = new System.Drawing.Size(20, 20);
             this.forwardButton.TabIndex = 3;
@@ -376,20 +385,53 @@ namespace ChromiumWindow
             // addressBar
             // 
             this.addressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.addressBar.ButtonSpecs.AddRange(new Krypton.Toolkit.ButtonSpecAny[] {
-            this.refreshBtn});
-            this.addressBar.Location = new System.Drawing.Point(93, 5);
+            this.addressBar.Controls.Add(this.addressTxtBox);
+            this.addressBar.Location = new System.Drawing.Point(109, 5);
             this.addressBar.Name = "addressBar";
-            this.addressBar.Size = new System.Drawing.Size(1280, 23);
-            this.addressBar.TabIndex = 4;
-            this.addressBar.Text = "https://google.com";
-            this.addressBar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.addressBar.Size = new System.Drawing.Size(1315, 31);
+            this.addressBar.TabIndex = 0;
+            // 
+            // addressTxtBox
+            // 
+            this.addressTxtBox.ButtonSpecs.AddRange(new Krypton.Toolkit.ButtonSpecAny[] {
+            this.refreshBtn});
+            this.addressTxtBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addressTxtBox.Location = new System.Drawing.Point(0, 0);
+            this.addressTxtBox.Name = "addressTxtBox";
+            this.addressTxtBox.Size = new System.Drawing.Size(1315, 32);
+            this.addressTxtBox.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(172)))), ((int)(((byte)(172)))));
+            this.addressTxtBox.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
+            this.addressTxtBox.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.addressTxtBox.StateCommon.Border.Rounding = 8F;
+            this.addressTxtBox.StateCommon.Border.Width = 1;
+            this.addressTxtBox.StateCommon.Content.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
+            this.addressTxtBox.StateCommon.Content.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addressTxtBox.TabIndex = 4;
+            this.addressTxtBox.Text = "https://google.com";
+            this.addressTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.addressTxtBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.addressTxtBox_KeyDown);
             // 
             // refreshBtn
             // 
             this.refreshBtn.Edge = Krypton.Toolkit.PaletteRelativeEdgeAlign.Near;
             this.refreshBtn.Image = global::ChromiumWindow.Properties.Resources.rotate_right_16x_16x;
             this.refreshBtn.UniqueName = "d44d76b195bb4658bb28bf8de5c55298";
+            // 
+            // splitContainer
+            // 
+            this.splitContainer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer.Location = new System.Drawing.Point(0, 42);
+            this.splitContainer.Name = "splitContainer";
+            // 
+            // splitContainer.Panel1
+            // 
+            this.splitContainer.Panel1.Controls.Add(this.tabsListView);
+            this.splitContainer.Size = new System.Drawing.Size(1436, 726);
+            this.splitContainer.SplitterDistance = 263;
+            this.splitContainer.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -405,10 +447,15 @@ namespace ChromiumWindow
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Web View";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            this.navigationPanel.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
+            this.addressBar.ResumeLayout(false);
+            this.addressBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer.Panel1)).EndInit();
             this.splitContainer.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer.Panel2)).EndInit();
@@ -426,35 +473,38 @@ namespace ChromiumWindow
 
         #endregion
 
-        private System.Windows.Forms.ToolStripMenuItem newTabToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveTabsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loadTabsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newTabBtn;
+        private System.Windows.Forms.ToolStripMenuItem saveTabsBtn;
+        private System.Windows.Forms.ToolStripMenuItem loadTabsBtn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printBtn;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyBtn;
+        private System.Windows.Forms.ToolStripMenuItem cutBtn;
+        private System.Windows.Forms.ToolStripMenuItem pasteBtn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem userGuideToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userGuideBtn;
+        private System.Windows.Forms.ToolStripMenuItem aboutBtn;
+        private System.Windows.Forms.ToolStripMenuItem exitBtn;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem minimizeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem maximizeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sideBarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addressBarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem menuBarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minimizeBtn;
+        private System.Windows.Forms.ToolStripMenuItem maximizeBtn;
+        private System.Windows.Forms.ToolStripMenuItem chkShowSideBar;
+        private System.Windows.Forms.ToolStripMenuItem chkShowAddressBar;
+        private System.Windows.Forms.ToolStripMenuItem chkShowMenuBar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripMenuItem lockViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lockViewBtn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.ToolStripMenuItem findToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem findBtn;
         private Krypton.Toolkit.KryptonSplitContainer splitContainer;
         private Krypton.Toolkit.KryptonButton backButton;
         private Krypton.Toolkit.KryptonButton forwardButton;
-        private Krypton.Toolkit.KryptonTextBox addressBar;
+        private Krypton.Toolkit.KryptonTextBox addressTxtBox;
         private Krypton.Toolkit.ButtonSpecAny refreshBtn;
+        private System.Windows.Forms.Panel addressBar;
+        private System.Windows.Forms.Panel navigationPanel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }
