@@ -15,11 +15,15 @@ namespace ChromiumWindow
 {
     public partial class DefaultTabCtl : UserControl, IBrowserTab
     {
+        public const int FAVICON_WIDTH = 16;
+        public const int FAVICON_HEIGHT = 16;
+
         public EventHandler? UriChanged;
         public EventHandler? TitleChanged;
         public EventHandler? IconUpdated;
         public EventHandler? OnNavigationCompleted;
         
+        public string UniqueName { get; set; }
         public string TabName { get; set; }
         public Image? TabImage { get; set; }
         public Uri? TabUri { get; set; }
@@ -29,6 +33,8 @@ namespace ChromiumWindow
         {
             TabUri = new Uri(initialUri);
             TabName = tabName;
+            UniqueName = tabName;
+
             InitializeComponent();
             
             WebControl = webView;
@@ -59,12 +65,23 @@ namespace ChromiumWindow
             Debugger.Log((int)LogLevel.Info, Debugger.DefaultCategory, 
                 $"WebView2 Runtime Version: {webView.CoreWebView2.Environment.BrowserVersionString}");
             
+            //Event handlers
             webView.CoreWebView2.FaviconChanged += CoreWebView2OnFaviconChanged;
             webView.CoreWebView2.SourceChanged += CoreWebView2OnSourceChanged;
             webView.CoreWebView2.DocumentTitleChanged += DocumentTitleChanged;
             webView.CoreWebView2.NavigationCompleted += NavigationCompleted;
+            webView.CoreWebView2.StatusBarTextChanged += CoreWebView2_StatusBarTextChanged;
+            webView.CoreWebView2.Settings.IsStatusBarEnabled = false; //disable status bar text
+
+            //Create a mapping to a local resource folder for custom web assets
+            webView.CoreWebView2.SetVirtualHostNameToFolderMapping("local", ".\\web\\", CoreWebView2HostResourceAccessKind.DenyCors);
 
             webView.CoreWebView2.Navigate(webView.Source.AbsoluteUri);
+        }
+
+        private void CoreWebView2_StatusBarTextChanged(object sender, object e)
+        {
+            //TODO: maybe do something with?
         }
 
         private void NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
@@ -97,16 +114,13 @@ namespace ChromiumWindow
             try
             {
                 using var client = new WebClient();
-                var content = client.DownloadData(webView.CoreWebView2.FaviconUri);
-                
-                using var stream = new MemoryStream(content);
-                stream.Seek(0, SeekOrigin.Begin);
-                TabImage = new Bitmap(stream);
+                byte[] content = client.DownloadData(webView.CoreWebView2.FaviconUri);
+                TabImage = Utility.Utility.ResizeImage(Utility.Utility.byteArrayToImage(content), FAVICON_WIDTH, FAVICON_HEIGHT);
+                //using var stream = new MemoryStream(content);
+                //stream.Seek(0, SeekOrigin.Begin);
+                //TabImage = new Bitmap(stream);
 
                 if (TabImage == null) return;
-
-                if (!GlobalVars.MainApplication.GetFavicons().Images.ContainsKey(TabName))
-                    GlobalVars.MainApplication.GetFavicons().Images.Add(TabName, TabImage);
 
                 IconUpdated?.Invoke(this, new CEventArgs.PageUpdatedEventArgs(this));
             }

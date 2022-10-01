@@ -6,6 +6,8 @@ namespace ChromiumWindow.Interfaces
 {
     public interface IBrowserTab
     {
+        public string UniqueName { get; set; }
+
         public string TabName { get; set; }
         
         #nullable enable
