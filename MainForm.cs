@@ -55,6 +55,8 @@ namespace ChromiumWindow
             dockingManager.DockableWorkspaceCellAdding += DockingManager_DockableWorkspaceCellAdding;
             dockableWorkspace.ActivePageChanged += UpdateSelectedTab;
             dockableWorkspace.CellVisibleCountChanged += DockableWorkspace_CellVisibleCountChanged;
+            dockableWorkspace.PageCloseClicked += DockableWorkspace_PageCloseClicked;
+
             // //Parse arguments
             // ParseArguments();
             //
@@ -62,6 +64,13 @@ namespace ChromiumWindow
             CreateTabs();
             //if (tabsListView.Items.Count > 0)
              //   tabsListView.FocusedItem = tabsListView.Items[0];
+        }
+
+        //Ensure that at least one tab remains
+        private void DockableWorkspace_PageCloseClicked(object sender, UniqueNameEventArgs e)
+        {
+            if (dockableWorkspace.AllPages().Length - 1 <= 0)
+                SelectedTab = NewTab(null);
         }
 
         private void DockableWorkspace_CellVisibleCountChanged(object sender, EventArgs e)
@@ -287,47 +296,6 @@ namespace ChromiumWindow
         {
             return _favicons;
         }
-
-        
-        private void tabsListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            IBrowserTab tabSelected = GetSelectedTab();
-            if (tabSelected == null) return;
-
-            try
-            {
-                //splitContainer.Panel2.Controls.Clear();
-                //splitContainer.Panel2.Controls.Add(_tabs[_tabs.IndexOf(tabSelected)] as DefaultTabCtl);
-
-                //splitContainer.Panel2.Update();
-            } catch (Exception ex)
-            {
-
-            }           
-        }
-
-        private int tabSelectedIndex = 0; //keep track of the selected zero-based index of the tab we select.
-        private IBrowserTab GetSelectedTab()
-        {
-            IBrowserTab tabSelected = null;
-           // if (tabsListView.SelectedItems.Count == 0) return tabSelected; //return null if we have no tabs
-
-           //if (tabsListView.SelectedItems[0].Index == tabSelectedIndex)
-                //return _tabs[tabSelectedIndex];
-
-            //if (tabsListView.SelectedItems.Count > 0)
-            {
-             //   tabSelected = tabsListView.SelectedItems[0].Tag as IBrowserTab;
-                //if (!_tabs.Contains(tabSelected))
-                 //   _tabs.Add(tabSelected);
-            }
-
-            //tabSelectedIndex = tabsListView.SelectedItems[0].Index; //update our selected index
-
-            return tabSelected;
-        }
-
-        
 
         private void backButton_Click(object sender, EventArgs e)
         {

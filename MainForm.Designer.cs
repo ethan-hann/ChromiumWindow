@@ -56,19 +56,23 @@ namespace ChromiumWindow
             this.aboutBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.exitBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.topPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.backButton = new Krypton.Toolkit.KryptonButton();
             this.forwardButton = new Krypton.Toolkit.KryptonButton();
             this.addressTxtBox = new Krypton.Toolkit.KryptonTextBox();
             this.refreshBtn = new Krypton.Toolkit.ButtonSpecAny();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mainMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.dockingManager = new Krypton.Docking.KryptonDockingManager();
             this.backPanel = new Krypton.Toolkit.KryptonPanel();
             this.dockableWorkspace = new Krypton.Docking.KryptonDockableWorkspace();
+            this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
             this.topPanel.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.backPanel)).BeginInit();
             this.backPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dockableWorkspace)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
+            this.kryptonPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // newTabBtn
@@ -291,34 +295,21 @@ namespace ChromiumWindow
             // 
             // topPanel
             // 
-            this.topPanel.Controls.Add(this.menuStrip1);
             this.topPanel.Controls.Add(this.backButton);
             this.topPanel.Controls.Add(this.forwardButton);
             this.topPanel.Controls.Add(this.addressTxtBox);
             this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.topPanel.Location = new System.Drawing.Point(0, 0);
+            this.topPanel.Location = new System.Drawing.Point(0, 24);
             this.topPanel.Name = "topPanel";
             this.topPanel.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.topPanel.Size = new System.Drawing.Size(1436, 42);
             this.topPanel.TabIndex = 0;
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.menuStrip1.BackColor = System.Drawing.Color.White;
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.menuStrip1.Location = new System.Drawing.Point(0, 9);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(128, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
             // backButton
             // 
             this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.backButton.ButtonStyle = Krypton.Toolkit.ButtonStyle.ButtonSpec;
-            this.backButton.Location = new System.Drawing.Point(131, 11);
+            this.backButton.Location = new System.Drawing.Point(3, 11);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(20, 20);
             this.backButton.TabIndex = 2;
@@ -330,7 +321,7 @@ namespace ChromiumWindow
             // 
             this.forwardButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.forwardButton.ButtonStyle = Krypton.Toolkit.ButtonStyle.ButtonSpec;
-            this.forwardButton.Location = new System.Drawing.Point(157, 11);
+            this.forwardButton.Location = new System.Drawing.Point(29, 11);
             this.forwardButton.Name = "forwardButton";
             this.forwardButton.Size = new System.Drawing.Size(20, 20);
             this.forwardButton.TabIndex = 3;
@@ -342,7 +333,7 @@ namespace ChromiumWindow
             // 
             this.addressTxtBox.ButtonSpecs.AddRange(new Krypton.Toolkit.ButtonSpecAny[] {
             this.refreshBtn});
-            this.addressTxtBox.Location = new System.Drawing.Point(183, 5);
+            this.addressTxtBox.Location = new System.Drawing.Point(55, 5);
             this.addressTxtBox.Name = "addressTxtBox";
             this.addressTxtBox.Size = new System.Drawing.Size(794, 32);
             this.addressTxtBox.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(172)))), ((int)(((byte)(172)))));
@@ -365,6 +356,18 @@ namespace ChromiumWindow
             this.refreshBtn.Image = global::ChromiumWindow.Properties.Resources.rotate_right_16x_16x;
             this.refreshBtn.UniqueName = "d44d76b195bb4658bb28bf8de5c55298";
             this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.White;
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainMenuButton});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1436, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
             // 
             // mainMenuButton
             // 
@@ -394,9 +397,9 @@ namespace ChromiumWindow
             // 
             this.backPanel.Controls.Add(this.dockableWorkspace);
             this.backPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.backPanel.Location = new System.Drawing.Point(0, 42);
+            this.backPanel.Location = new System.Drawing.Point(0, 66);
             this.backPanel.Name = "backPanel";
-            this.backPanel.Size = new System.Drawing.Size(1436, 726);
+            this.backPanel.Size = new System.Drawing.Size(1436, 702);
             this.backPanel.TabIndex = 2;
             // 
             // dockableWorkspace
@@ -416,10 +419,20 @@ namespace ChromiumWindow
             this.dockableWorkspace.Root.WorkspaceControl = this.dockableWorkspace;
             this.dockableWorkspace.SeparatorStyle = Krypton.Toolkit.SeparatorStyle.LowProfile;
             this.dockableWorkspace.ShowMaximizeButton = false;
-            this.dockableWorkspace.Size = new System.Drawing.Size(1436, 726);
+            this.dockableWorkspace.Size = new System.Drawing.Size(1436, 702);
             this.dockableWorkspace.SplitterWidth = 5;
             this.dockableWorkspace.TabIndex = 0;
             this.dockableWorkspace.TabStop = true;
+            // 
+            // kryptonPanel1
+            // 
+            this.kryptonPanel1.Controls.Add(this.topPanel);
+            this.kryptonPanel1.Controls.Add(this.menuStrip1);
+            this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.kryptonPanel1.Location = new System.Drawing.Point(0, 0);
+            this.kryptonPanel1.Name = "kryptonPanel1";
+            this.kryptonPanel1.Size = new System.Drawing.Size(1436, 66);
+            this.kryptonPanel1.TabIndex = 5;
             // 
             // MainForm
             // 
@@ -428,7 +441,7 @@ namespace ChromiumWindow
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1436, 768);
             this.Controls.Add(this.backPanel);
-            this.Controls.Add(this.topPanel);
+            this.Controls.Add(this.kryptonPanel1);
             this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormTitleAlign = Krypton.Toolkit.PaletteRelativeAlign.Center;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -439,9 +452,14 @@ namespace ChromiumWindow
             this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.topPanel.ResumeLayout(false);
             this.topPanel.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.backPanel)).EndInit();
             this.backPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dockableWorkspace)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
+            this.kryptonPanel1.ResumeLayout(false);
+            this.kryptonPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -482,5 +500,6 @@ namespace ChromiumWindow
         private Krypton.Docking.KryptonDockingManager dockingManager;
         private Krypton.Toolkit.KryptonPanel backPanel;
         private Krypton.Docking.KryptonDockableWorkspace dockableWorkspace;
+        private Krypton.Toolkit.KryptonPanel kryptonPanel1;
     }
 }
